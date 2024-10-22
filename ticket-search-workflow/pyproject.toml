@@ -12,6 +12,42 @@ fastapi-restful = {extras = ["all"], version = "^0.6.0"}
 sqlmodel = "^0.0.22"
 
 
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.12.1"
+ruff = "^0.7.0"
+pre-commit = "^4.0.1"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.ruff]
+line-length = 120
+indent-width = 4
+
+lint.select = ["E", "F", "UP", "N", "C", "B"]
+lint.ignore = ["E501"]
+
+# Exclude a variety of commonly ignored directories.
+# Assume Python 3.10
+target-version = "py310"
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["fastapi.Depends",]
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
