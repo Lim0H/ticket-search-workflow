@@ -1,0 +1,15 @@
+[importlinter]
+root_package = ticket-search-workflow.workflow
+
+[importlinter:contract:1]
+name=Workflow Layered Architecture
+type=layers
+containers=ticket-search-workflow.workflow
+layers=
+    api
+    service
+    repository
+    (util)
+    (schema)
+    model
+    core

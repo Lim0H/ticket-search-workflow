@@ -16,6 +16,7 @@ sqlmodel = "^0.0.22"
 mypy = "^1.12.1"
 ruff = "^0.7.0"
 pre-commit = "^4.0.1"
+import-linter = "^2.1"
 
 [build-system]
 requires = ["poetry-core"]

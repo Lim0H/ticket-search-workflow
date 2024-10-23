@@ -117,6 +117,9 @@ venv.bak/
 .spyderproject
 .spyproject
 
+# import linter
+.import_linter_cache
+
 # Rope project settings
 .ropeproject
 
