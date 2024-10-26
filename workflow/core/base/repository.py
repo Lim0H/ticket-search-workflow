@@ -2,7 +2,7 @@ from typing import Generic, TypeVar
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from workflow.core import BaseModel
+from workflow.core.base.model import BaseModel
 
 T = TypeVar("T", bound=BaseModel)
 

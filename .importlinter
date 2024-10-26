@@ -13,12 +13,15 @@ layers=
     (schema)
     model
     core
+ignore_imports=
+    workflow.core.init.database.init_database -> workflow.model
 
 [importlinter:contract:2]
 name=Workflow Core Layered Architecture
 type=layers
 containers=workflow.core
 layers=
-    database : config : base
+    init
+    config : base
     const
     type

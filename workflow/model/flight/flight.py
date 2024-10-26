@@ -1,10 +1,13 @@
 from datetime import datetime
+from typing import TYPE_CHECKING
 
 from sqlmodel import Field, Relationship
 
 from workflow.core import BaseModel, IdType, SeatClass
 from workflow.core import FlightStatus
-from workflow.model import AirLine, AirPort
+
+if TYPE_CHECKING:
+    from workflow.model import AirLine, AirPort
 
 
 class Flight(BaseModel, table=True):
@@ -16,9 +19,9 @@ class Flight(BaseModel, table=True):
     flight_duration_in_seconds: int
     flight_status: FlightStatus = Field(default=FlightStatus.FLIGHT_WAITING)
 
-    airline: AirLine = Relationship()
-    departure_airport: AirPort = Relationship()
-    arrival_airport: AirPort = Relationship()
+    airline: "AirLine" = Relationship()
+    departure_airport: "AirPort" = Relationship()
+    arrival_airport: "AirPort" = Relationship()
 
 
 class Seat(BaseModel, table=True):

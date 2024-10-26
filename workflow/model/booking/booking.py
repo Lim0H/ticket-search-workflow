@@ -1,5 +1,6 @@
 from datetime import datetime, date
 from decimal import Decimal
+from typing import TYPE_CHECKING
 
 from pydantic import EmailStr
 from pydantic_extra_types.currency_code import Currency
@@ -8,7 +9,9 @@ from sqlmodel import Field, Relationship
 
 from workflow.core import BaseModel, PaymentMethod, IdType, BookingStatus
 from workflow.core import PaymentStatus
-from workflow.model import Seat, Flight
+
+if TYPE_CHECKING:
+    from workflow.model import Seat, Flight
 
 
 class Passenger(BaseModel, table=True):
@@ -27,12 +30,12 @@ class Booking(BaseModel, table=True):
     __tablename__ = "bookings"
 
     booking_id: IdType = Field(primary_key=True, default=None)
-    booking_datetime: datetime = Field(default_factory=datetime.utcnow())  # type: ignore
+    booking_datetime: datetime = Field(default_factory=datetime.utcnow)  # type: ignore
     booking_status: BookingStatus = Field(default=BookingStatus.BOOKED)
 
     passenger: Passenger = Relationship()
-    seat: Seat = Relationship()
-    flight: Flight = Relationship()
+    seat: "Seat" = Relationship()
+    flight: "Flight" = Relationship()
 
 
 class BookingPayment(BaseModel, table=True):

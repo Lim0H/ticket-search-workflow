@@ -1,6 +1,5 @@
-from datetime import timezone
-
 from pydantic_extra_types.country import CountryShortName, CountryAlpha3
+from pydantic_extra_types.timezone_name import TimeZoneName
 from sqlmodel import Field, Relationship
 
 from workflow.core import BaseModel, IdType
@@ -21,7 +20,7 @@ class AirPort(BaseModel, table=True):
     airport_name: str
     city: str
     iata_code: str = Field(unique=True)
-    timezone: timezone
+    timezone: TimeZoneName
 
     country: Country = Relationship()
 
