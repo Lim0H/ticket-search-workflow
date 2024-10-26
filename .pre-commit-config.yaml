@@ -12,7 +12,7 @@ repos:
         name: import-linter
         entry: "lint-imports"
         language: python
-        types: [python]
+        types: [ python ]
         pass_filenames: false
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
@@ -21,7 +21,7 @@ repos:
     hooks:
       # Run the linter.
       - id: ruff
-        args: [--fix]
+        args: [ --fix ]
       # Run the formatter.
       - id: ruff-format
 
@@ -29,7 +29,7 @@ repos:
     rev: 1.7.10
     hooks:
       - id: bandit
-        args: ["-ll"]
+        args: [ "-ll" ]
         files: .py$
 
   - repo: https://github.com/pre-commit/mirrors-mypy
@@ -39,3 +39,4 @@ repos:
         files: .py$
         additional_dependencies:
           - "pydantic>=1.10.4"
+          - 'sqlmodel>=0.0.22'

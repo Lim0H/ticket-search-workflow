@@ -1,1 +1,1 @@
-from .postgres import POSTGRES_SETTINGS
+from .postgres import *

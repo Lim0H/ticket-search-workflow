@@ -19,8 +19,6 @@ name=Workflow Core Layered Architecture
 type=layers
 containers=workflow.core
 layers=
-    database
-    config
-    base
+    database : config : base
     const
     type

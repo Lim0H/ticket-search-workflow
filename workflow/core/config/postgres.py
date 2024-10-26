@@ -1,7 +1,9 @@
 from pydantic import PostgresDsn, computed_field
 from pydantic_core import MultiHostUrl
 
-from workflow.core.base import BaseSettings
+from workflow.core.base.config import BaseSettings
+
+__all__ = ["POSTGRES_SETTINGS"]
 
 
 class PostgresSettings(BaseSettings):
@@ -60,5 +62,3 @@ class PostgresSettings(BaseSettings):
 
 
 POSTGRES_SETTINGS = PostgresSettings()
-
-__all__ = ["POSTGRES_SETTINGS"]
