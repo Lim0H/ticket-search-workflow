@@ -19,6 +19,7 @@ mypy = "^1.12.1"
 ruff = "^0.7.0"
 pre-commit = "^4.0.1"
 import-linter = "^2.1"
+ipython = "^8.29.0"
 
 [build-system]
 requires = ["poetry-core"]
