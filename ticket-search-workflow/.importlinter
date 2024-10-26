@@ -13,3 +13,14 @@ layers=
     (schema)
     model
     core
+
+[importlinter:contract:2]
+name=Workflow Core Layered Architecture
+type=layers
+containers=ticket-search-workflow.workflow.core
+layers=
+    database
+    config
+    base
+    const
+    type
