@@ -1,10 +1,10 @@
 [importlinter]
-root_package = ticket-search-workflow.workflow
+root_package = workflow
 
 [importlinter:contract:1]
 name=Workflow Layered Architecture
 type=layers
-containers=ticket-search-workflow.workflow
+containers=workflow
 layers=
     api
     service
@@ -17,7 +17,7 @@ layers=
 [importlinter:contract:2]
 name=Workflow Core Layered Architecture
 type=layers
-containers=ticket-search-workflow.workflow.core
+containers=workflow.core
 layers=
     database
     config
