@@ -53,7 +53,7 @@ class PostgresSettings(BaseSettings):
             PostgresDsn: The constructed PostgresDsn URL.
         """
         return MultiHostUrl.build(
-            scheme="postgres",
+            scheme="postgresql",
             username=self.POSTGRES_USER,
             password=self.POSTGRES_PASSWORD,
             host=self.POSTGRES_HOST,

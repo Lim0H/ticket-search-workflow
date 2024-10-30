@@ -1,29 +1,42 @@
-from collections.abc import AsyncGenerator
+from asyncio import current_task
 
+from sqlalchemy import create_engine
 from sqlalchemy.ext.asyncio import (
-    AsyncSession,
-    async_sessionmaker,
     create_async_engine,
+    async_scoped_session,
+    async_sessionmaker,
 )
+from sqlalchemy.orm import sessionmaker
 
 from workflow.core.config import POSTGRES_SETTINGS
 
 postgres_engine = create_async_engine(
     POSTGRES_SETTINGS.asyncpg_url.unicode_string(),
     future=True,
-    echo=True,
+    echo=False,
 )
 
+postgres_engine_sync = create_engine(
+    POSTGRES_SETTINGS.postgres_url.unicode_string(),
+    future=True,
+    echo=False,
+)
+
+SessionFactory = sessionmaker(
+    postgres_engine_sync,
+    autoflush=False,
+    autocommit=False,
+    expire_on_commit=False,
+)
 AsyncSessionFactory = async_sessionmaker(
     postgres_engine,
     autoflush=False,
+    autocommit=False,
     expire_on_commit=False,
 )
 
+sc_postgres_session = async_scoped_session(
+    AsyncSessionFactory, scopefunc=current_task
+)
 
-async def get_postgres_session() -> AsyncGenerator[AsyncSession, None]:
-    async with AsyncSessionFactory() as session:
-        yield session
-
-
-__all__ = ["get_postgres_session", "AsyncSessionFactory", "postgres_engine"]
+__all__ = ["sc_postgres_session"]

@@ -1,9 +1,15 @@
 [tool.poetry]
-name = "ticket-search-workflow"
+name = "workflow"
 version = "0.1.0"
 description = ""
 authors = ["Illia Bahlai <bahlai.illia@gmail.com>"]
 readme = "README.md"
+package-mode = false
+
+[tool.poetry.scripts]
+start = "workflow.__main__:run_app"
+gen_database = "database_generator.database_factory:gen_database"
+
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -29,6 +35,14 @@ pre-commit = "^4.0.1"
 import-linter = "^2.1"
 ipython = "^8.29.0"
 sqlacodegen = { git = "git@github.com:agronholm/sqlacodegen.git" }
+polyfactory = "^2.17.0"
+factory-boy = "^3.3.1"
+faker = "^30.8.1"
+faker-airtravel = "^0.4"
+pytest = "^8.3.3"
+types-factory-boy = "^0.4.1"
+black = "^24.10.0"
+async-factory-boy = "^1.0.1"
 
 [build-system]
 requires = ["poetry-core"]

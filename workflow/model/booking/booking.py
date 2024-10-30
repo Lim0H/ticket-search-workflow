@@ -18,6 +18,8 @@ class Passenger(BaseModel, table=True):
     __tablename__ = "passengers"
 
     passenger_id: IdType = Field(primary_key=True, default=None)
+    booking_id: int = Field(foreign_key="bookings.booking_id")
+
     first_name: str
     last_name: str
     date_of_birth: date
@@ -25,11 +27,15 @@ class Passenger(BaseModel, table=True):
     contact_phone: PhoneNumber
     contact_email: EmailStr
 
+    booking: "Booking" = Relationship()
+
 
 class Booking(BaseModel, table=True):
     __tablename__ = "bookings"
 
     booking_id: IdType = Field(primary_key=True, default=None)
+    flight_id: int = Field(foreign_key="flights.flight_id")
+    seat_id: int = Field(foreign_key="seats.seat_id")
     booking_datetime: datetime = Field(default_factory=datetime.utcnow)  # type: ignore
     booking_status: BookingStatus = Field(default=BookingStatus.BOOKED)
 
@@ -42,6 +48,7 @@ class BookingPayment(BaseModel, table=True):
     __tablename__ = "booking_payments"
 
     payment_id: IdType = Field(primary_key=True, default=None)
+    booking_id: int = Field(foreign_key="bookings.booking_id")
     amount: Decimal
     currency: Currency
     payment_datetime: datetime

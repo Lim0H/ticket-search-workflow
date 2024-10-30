@@ -17,6 +17,7 @@ class AirPort(BaseModel, table=True):
     __tablename__ = "airports"
 
     airport_id: IdType = Field(default=None, primary_key=True)
+    country_id: int = Field(foreign_key="countries.country_id")
     airport_name: str
     city: str
     iata_code: str = Field(unique=True)
@@ -29,6 +30,7 @@ class AirLine(BaseModel, table=True):
     __tablename__ = "airlines"
 
     airline_id: IdType = Field(default=True, primary_key=True)
+    country_id: int = Field(foreign_key="countries.country_id")
     airline_name: str
     iata_code: str = Field(unique=True)
     country: Country = Relationship()
