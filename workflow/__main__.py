@@ -1,17 +1,12 @@
 import uvicorn
-from fastapi import FastAPI
 
+from workflow import ROUTERS
 from workflow.core import FASTAPI_SETTINGS
 from workflow.core.init import init_application
 
 
 def run_app():
-    init_application()
-    app = FastAPI()
-
-    @app.get("/")
-    async def read_root():
-        return {"Hello": "World"}
+    app = init_application(ROUTERS)
 
     uvicorn.run(
         app,
